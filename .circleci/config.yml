@@ -1,0 +1,25 @@
+version: 2.1
+
+jobs:
+  build-and-test:
+    docker:
+      - image: python:3.10
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: pip install python-telegram-bot --upgrade
+      - run:
+          name: List files
+          command: ls
+      - run:
+          name: Make Python script executable
+          command: chmod +x *
+      - run:
+          name: Run Python script
+          command: python3 free.py
+
+workflows:
+  build-and-test-workflow:
+    jobs:
+      - build-and-test
